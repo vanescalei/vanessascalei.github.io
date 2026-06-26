@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanessa Scalei | Head de Projetos & Atendimento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --white: #FAFAFA;
+            --paper: #F2F0ED;
+            --ink: #1A1A2E;
+            --ink-soft: #2C2C4A;
+            --slate: #4A5568;
+            --slate-light: #718096;
+            --rule: #CBD5E0;
+            --accent: #1A7A6E;
+            --accent-soft: #C8E8E4;
+            --blue-deep: #1A2744;
+            --blue-mid: #2D4270;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+        
+        /* NAV */
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index: 100;
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
+            padding: 0 4rem;
+            height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: box-shadow 0.3s;
+        }
+        nav.shadow { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        .nav-brand {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink);
+            letter-spacing: 0.02em;
+        }
+        .nav-brand span { color: var(--accent); font-style: normal; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--slate);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--blue-deep);
+            display: grid;
+            grid-template-columns: 1fr 52%;
+            position: relative;
+            overflow: hidden;
+            padding-top: 56px;
+        }
+        .hero::before {
+            content: "";
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+        .hero-content {
+            padding: 6rem 3.5rem 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .hero-label::before {
+            content: "";
+            display: block;
+            width: 24px; height: 1px;
+            background: var(--accent);
+        }
+        .hero-big-num {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(7rem, 14vw, 13rem);
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+            line-height: 0.85;
+            position: absolute;
+            top: 50%; left: 4rem;
+            transform: translateY(-60%);
+            z-index: 1;
+            pointer-events: none;
+            letter-spacing: -0.04em;
+            user-select: none;
+        }
+        .hero-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 700;
+            color: #FAFAFA;
+            line-height: 1.05;
+            margin-bottom: 0.5rem;
+            position: relative; z-index: 2;
+        }
+        .hero-name em { font-style: italic; color: rgba(250,250,250,0.6); font-weight: 400; }
+        .hero-role {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(250,250,250,0.65);
+            letter-spacing: 0.05em;
+            margin-bottom: 3rem;
+            position: relative; z-index: 2;
+            line-height: 1.5;
+        }
+        .hero-role strong { color: rgba(250,250,250,0.9); font-weight: 500; }
+        .hero-divider { width: 48px; height: 1px; background: var(--accent); margin-bottom: 2rem; position: relative; z-index: 2; }
+        .hero-bio {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: rgba(250,250,250,0.55);
+            max-width: 520px;
+            font-weight: 300;
+            position: relative; z-index: 2;
+            margin-bottom: 2.5rem;
+        }
+        .hero-ctas { display: flex; gap: 1rem; align-items: center; position: relative; z-index: 2; }
+        .btn-accent { background: var(--accent); color: #fff; padding: 0.85rem 2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; display: inline-block; border: none; cursor: pointer; }
+        .btn-accent:hover { background: #155F55; transform: translateY(-2px); }
+        .btn-outline { color: rgba(250,250,250,0.6); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(250,250,250,0.25); padding-bottom: 2px; transition: all 0.3s; }
+        .btn-outline:hover { color: #fff; border-color: #fff; }
+        
+        .hero-photo-panel { position: relative; overflow: hidden; background: var(--blue-mid); }
+        .hero-photo-panel img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; filter: grayscale(8%) contrast(1.08) brightness(1.04); opacity: 0.95; }
+        .hero-photo-panel::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(26,39,68,0.55) 0%, transparent 35%), linear-gradient(to top, rgba(26,39,68,0.3) 0%, transparent 25%);
+            pointer-events: none;
+        }
+        .hero-photo-panel::before { content: ""; position: absolute; left: 0; bottom: 0; right: 0; height: 3px; background: var(--accent); z-index: 3; }
+        .photo-badge { position: absolute; bottom: 2.5rem; right: 2rem; z-index: 4; text-align: right; }
+        .photo-badge-name { display: block; font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: rgba(250,250,250,0.9); letter-spacing: 0.02em; }
+        .photo-badge-role { display: block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 0.3rem; }
+
+        /* SOBRE */
+        .sobre {
+            background: var(--white);
+            padding: 7rem 5rem;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 5rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        .sobre-sidebar { position: relative; }
+        .sobre-sidebar::after { content: ""; position: absolute; right: -2.5rem; top: 0; bottom: 0; width: 1px; background: var(--rule); }
+        .section-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+        
+        .sobre-competencias { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+        .competencia {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--blue-deep);
+            border-left: 2px solid var(--accent);
+            padding: 0.2rem 0 0.2rem 0.75rem;
+            opacity: 0.85;
+        }
+
+        .sobre-body { padding-top: 0.5rem; }
+        .sobre-body h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 2rem; }
+        .sobre-body p { font-size: 1rem; line-height: 1.85; color: var(--slate); font-weight: 300; margin-bottom: 1.8rem; }
+        .sobre-body p strong { color: var(--ink); font-weight: 600; }
+        
+        .sobre-pilares { margin-top: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .pilar { display: flex; flex-direction: column; gap: 0.5rem; padding-bottom: 1rem; }
+        .pilar-header { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--ink); }
+        .pilar-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+        .pilar-text { font-size: 0.85rem; color: var(--slate); line-height: 1.6; font-weight: 300; }
+
+        /* PROJETOS VISUAIS */
+        .projetos { background: var(--white); padding: 7rem 5rem; border-bottom: 1px solid var(--rule); }
+        .projetos-header { margin-bottom: 4rem; }
+        .projetos-header h2 { font-family: 'Libre Baskerville', serif; font-size: 2.6rem; font-weight: 700; color: var(--ink); }
+        .projetos-header h2 em { font-style: italic; color: var(--accent); }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .project-card { background: var(--paper); overflow: hidden; display: flex; flex-direction: column; border-bottom: 2px solid transparent; transition: all 0.3s ease; text-decoration: none; color: inherit; }
+        .project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 20px rgba(0,0,0,0.05); }
+        .project-frame-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000; }
+        .project-frame-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .project-frame-wrapper img { transform: scale(1.03); }
+        .project-info { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .project-title { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
+        .project-desc { font-size: 0.85rem; color: var(--slate); line-height: 1.6; font-weight: 300; }
+
+        /* TRAJETÓRIA */
+        .trajetoria { background: var(--paper); padding: 7rem 5rem; border-bottom: 1px solid var(--rule); }
+        .traj-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--rule); align-items: end; }
+        .traj-header h2 { font-family: 'Libre Baskerville', serif; font-size: 2.8rem; font-weight: 700; line-height: 1.1; color: var(--ink); }
+        .traj-header h2 em { font-style: italic; color: var(--accent); }
+        .traj-header p { font-size: 0.95rem; line-height: 1.8; color: var(--slate); font-weight: 300; }
+        .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+        .timeline-col-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate-light); margin-bottom: 2rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+        .tl-item { position: relative; padding: 1.5rem 0 1.5rem 1.5rem; border-left: 1px solid var(--rule); }
+        .tl-item::before { content: ""; position: absolute; left: -4px; top: 1.85rem; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; border: 2px solid var(--paper); }
+        .tl-period { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--slate-light); margin-bottom: 0.4rem; }
+        .tl-role { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; line-height: 1.25; }
+        .tl-org { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.6rem; }
+        .tl-desc { font-size: 0.85rem; line-height: 1.65; color: var(--slate); font-weight: 300; }
+
+        /* FORMAÇÃO */
+        .formacao { background: var(--blue-deep); padding: 7rem 5rem; }
+        .formacao-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+        .formacao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); }
+        .formacao-item { background: var(--blue-deep); padding: 2.2rem; transition: background 0.3s; }
+        .formacao-item:hover { background: var(--blue-mid); }
+        .form-grau { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #40C4B4; margin-bottom: 0.85rem; font-weight: 500; }
+        .form-titulo { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #FFFFFF; line-height: 1.3; margin-bottom: 0.5rem; }
+        .form-inst { font-size: 0.85rem; color: rgba(255,255,255,0.75); font-weight: 400; margin-bottom: 0.4rem; line-height: 1.4; }
+        .form-ano { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
+
+        /* CONTATO */
+        .contato {
+            background: var(--white);
+            padding: 7rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+            border-top: 1px solid var(--rule);
+        }
+        .contato-left h2 { font-family: 'Libre Baskerville', serif; font-size: 2.4rem; font-weight: 700; line-height: 1.1; color: var(--ink); margin-top: 0.5rem; margin-bottom: 1.5rem; }
+        .contato-left h2 em { font-style: italic; color: var(--accent); }
+        .contato-left p { font-size: 0.95rem; line-height: 1.8; color: var(--slate); font-weight: 300; }
+        
+        .contato-mid { display: flex; flex-direction: column; padding-top: 0.5rem; }
+        .contato-row { display: flex; flex-direction: column; padding: 1.2rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; transition: padding-left 0.3s; }
+        .contato-row:first-child { border-top: 1px solid var(--rule); }
+        .contato-row:hover { padding-left: 1rem; }
+        .contato-row-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate-light); margin-bottom: 0.3rem; }
+        .contato-row-value { font-family: 'Libre Baskerville', serif; font-size: 1rem; color: var(--ink); font-weight: 400; }
+
+        .contato-form-panel { background: var(--paper); padding: 2rem; border-radius: 2px; }
+        .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; background: var(--white); border: 1px solid var(--rule); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--ink); transition: border 0.2s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .form-submit-btn { width: 100%; text-align: center; border: none; font-family: 'DM Mono', monospace; cursor: pointer; }
+
+        /* FOOTER */
+        footer { background: var(--ink); padding: 2.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+        .footer-brand { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1rem; color: rgba(250,250,250,0.6); }
+        .footer-brand span { color: var(--accent); font-style: normal; }
+        .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: rgba(250,250,250,0.25); letter-spacing: 0.1em; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(250,250,250,0.35); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .hero { grid-template-columns: 1fr; }
+            .hero-content { padding: 5rem 2rem 3rem; }
+            .hero-big-num { font-size: 8rem; left: 1rem; }
+            .hero-photo-panel { height: 60vw; }
+            .sobre { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+            .sobre-sidebar::after { display: none; }
+            .sobre-pilares { grid-template-columns: 1fr; }
+            .projetos { padding: 5rem 2rem; }
+            .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .trajetoria { padding: 5rem 2rem; }
+            .traj-header { grid-template-columns: 1fr; gap: 1.5rem; }
+            .timeline { grid-template-columns: 1fr; }
+            .formacao { padding: 5rem 2rem; }
+            .formacao-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .formacao-grid { grid-template-columns: 1fr; }
+            .contato { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+            footer { flex-direction: column; gap: 1rem; padding: 2rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="mainNav">
+        <div class="nav-brand">Vanessa <span>Scalei</span></div>
+        <ul class="nav-links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#trajetoria">Trajetória</a></li>
+            <li><a href="#formacao">Formação</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-big-num" aria-hidden="true">20</div>
+        <div class="hero-content">
+            <div class="hero-label">Head de Projetos &amp; Atendimento</div>
+            <h1 class="hero-name">Vanessa<br><em>Scalei</em></h1>
+            <div class="hero-role">
+                Jornalista · <strong>Doutora em Comunicação</strong> · Pesquisadora · Estrategista de Conteúdo
+            </div>
+            <div class="hero-divider"></div>
+            <p class="hero-bio">
+                Duas décadas de trajetória traduzindo cenários complexos de mídia e entretenimento em estratégias de conteúdo focadas em gerar valor de marca real.
+            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 3.5rem; margin-top: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <span style="width: 6px; height: 6px; background: var(--accent); border-radius: 50%;"></span>
+                    <span style="font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: #FAFAFA; font-weight: 400;">Inteligência de dados.</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <span style="width: 6px; height: 6px; background: var(--accent); border-radius: 50%;"></span>
+                    <span style="font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: #FAFAFA; font-weight: 400;">Narrativas multiplataforma.</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <span style="width: 6px; height: 6px; background: var(--accent); border-radius: 50%;"></span>
+                    <span style="font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: #FAFAFA; font-weight: 400;">Liderança de impacto.</span>
+                </div>
+            </div>
+
+            <div class="hero-ctas">
+                <a href="#contato" class="btn-accent">Entrar em contato</a>
+                <a href="#projetos" class="btn-outline">Ver projetos</a>
+            </div>
+        </div>
+        <div class="hero-photo-panel">
+            <div class="photo-badge">
+                <span class="photo-badge-name">Vanessa Scalei</span>
+                <span class="photo-badge-role">Head de Projetos &amp; Atendimento</span>
+            </div>
+            <img src="Vanessa Scalei-1_menor.jpg" alt="Vanessa Scalei">
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="sobre-sidebar reveal">
+            <div class="section-tag">Competências</div>
+            <div class="sobre-competencias">
+                <span class="competencia">Coordenação de Conteúdo</span>
+                <span class="competencia">Branded Content</span>
+                <span class="competencia">Comunicação Institucional</span>
+                <span class="competencia">Gestão de Projetos</span>
+                <span class="competencia">Edição Jornalística</span>
+                <span class="competencia">Multiplataforma</span>
+                <span class="competencia">Pesquisa em Comunicação</span>
+                <span class="competencia">Streaming &amp; TV</span>
+                <span class="competencia">Audiências Digitais</span>
+                <span class="competencia">Liderança de Times</span>
+            </div>
+        </div>
+        <div class="sobre-body reveal">
+            <div class="section-tag">Sobre Mim</div>
+            <h2 style="white-space: nowrap; font-size: clamp(1.6rem, 3.5vw, 2.4rem);">Estratégia, dados e narrativa.</h2>
+            <p style="margin-top: 2rem;">Com mais de <strong>20 anos de trajetória no mercado de mídia e entretenimento</strong>, minha atuação é focada na intersecção entre estratégia de conteúdo, inteligência de dados e execução operacional ágil.</p>
+            <p>Minha expertise reside em transformar <strong>objetivos de negócio em narrativas multiplataforma</strong> que geram engajamento real e valor de marca. Desenvolvo arquiteturas de conteúdo integradas cobrindo ecossistemas de TV, Redes Sociais e transmissões ao vivo de grandes eventos.</p>
+            <p>Minha formação acadêmica, incluindo <strong>Doutorado na PUCRS</strong> focado em ecossistemas digitais, permite-me aplicar um olhar científico, analítico e inovador sobre tendências de consumo de mídia e audiências.</p>
+            
+            <div class="sobre-pilares">
+                <div class="pilar">
+                    <div class="pilar-header"><span class="pilar-dot"></span><strong>Liderança Estratégica</strong></div>
+                    <div class="pilar-text">Gestão de times criativos e operacionais de alta performance sob ambientes de pressão.</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-header"><span class="pilar-dot"></span><strong>Visão Multiplataforma</strong></div>
+                    <div class="pilar-text">Arquitetura de conteúdo perfeitamente integrada entre TV, Social e experiências Live.</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-header"><span class="pilar-dot"></span><strong>Gestão de Projetos</strong></div>
+                    <div class="pilar-text">Domínio completo do ciclo de vida do projeto, do planejamento estratégico à entrega técnica.</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-header"><span class="pilar-dot"></span><strong>Consultoria de Mídia</strong></div>
+                    <div class="pilar-text">Metodologia científica aplicada à análise profunda de comportamento de audiência e mercado.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projetos" id="projetos">
+        <div class="projetos-header reveal">
+            <div class="section-tag">Cases Executivos</div>
+            <h2>Projetos em <em>destaque.</em></h2>
+        </div>
+        <div class="projects-grid reveal">
+            <a href="https://vimeo.com" target="_blank" class="project-card">
+                <div class="project-frame-wrapper">
+                    <img src="TempoParaAmar_frame.jpg" alt="Frame do programa Tempo para Amar">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">TV | Documentário</span>
+                    <h3 class="project-title">Tempo Para Amar</h3>
+                    <p class="project-desc">Coordenação de projeto de série documental da influencer Rafa Kalimann produzida para o canal GNT e a plataforma Globoplay.</p>
+                </div>
+            </a>
+            <a href="https://vimeo.com" target="_blank" class="project-card">
+                <div class="project-frame-wrapper">
+                    <img src="PapoDeReality_Frame.jpg" alt="Frame do programa Papo de Reality">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">Social Media | Streaming</span>
+                    <h3 class="project-title">Papo de Reality</h3>
+                    <p class="project-desc">Gestão de projeto multiplataforma para reverberação do BBB para os canais digitais do sistema Globo.</p>
+                </div>
+            </a>
+            <a href="https://vimeo.com" target="_blank" class="project-card">
+                <div class="project-frame-wrapper">
+                    <img src="TodaBrasileiraTem_Frame.jpg" alt="Frame do programa Toda Brasileira Tem">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">TV | Branded Content</span>
+                    <h3 class="project-title">Toda Brasileira Tem</h3>
+                    <p class="project-desc">Gestão de projeto para série de TV que celebra a pluralidade, a diversidade e a identidade feminina através da moda.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="trajetoria" id="trajetoria">
+        <div class="traj-header reveal">
+            <h2>Uma trajetória<br>de <em>consistência.</em></h2>
+            <p>De editora-chefe de jornal impresso à Head de Projetos em produtora audiovisual — passando por pesquisa doutoral, docência corporativa e grandes grupos de mídia nacionais.</p>
+        </div>
+        <div class="timeline">
+            <div class="reveal">
+                <div class="timeline-col-label">Experiência Profissional</div>
+                <div class="tl-item">
+                    <div class="tl-period">NOV 2024 — PRESENTE</div>
+                    <div class="tl-role">Head de Projetos e Atendimento</div>
+                    <div class="tl-org">Canarinho</div>
+                    <div class="tl-desc">Gerenciamento de projetos audiovisuais complexos, atendimento a grandes contas institucionais e branded content em Brasília.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-period">AGO 2022 — OUT 2024 · 2 anos e 3 meses</div>
+                    <div class="tl-role">Head de Conteúdo</div>
+                    <div class="tl-org">Canarinho</div>
+                    <div class="tl-desc">Liderança criativa e gerenciamento de projetos multimídia com foco em narrativas integradas e estratégia corporativa em Porto Alegre.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-period">ABR 2022 — JUL 2022</div>
+                    <div class="tl-role">Executive Tech Researcher</div>
+                    <div class="tl-org">Ella Executive Search</div>
+                    <div class="tl-desc">Pesquisa avançada e inteligência de mercado para o mapeamento e recrutamento especializado de lideranças executivas de tecnologia.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-period">JUN 2010 — FEV 2019 · 8 anos e 9 meses</div>
+                    <div class="tl-role">Editora Digital de Cultura &amp; Entretenimento</div>
+                    <div class="tl-org">Grupo RBS — GaúchaZH</div>
+                    <div class="tl-desc">Coordenação de pauta unificada, gestão de equipes de redação, liderança de cobertura de grandes festivals e colunista de TV.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-period">MAI 2007 — ABR 2010 · 3 anos</div>
+                    <div class="tl-role">Editora-Chefe</div>
+                    <div class="tl-org">Jornal da Manhã</div>
+                    <div class="tl-desc">Coordenação editorial geral, gestão direta de equipe, planejamento de pautas institucionais e fechamento do jornal impresso.</div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="timeline-col-label">Pesquisa &amp; Docência</div>
+                <div class="tl-item">
+                    <div class="tl-period">MAR 2018 — MAR 2022 · 4 anos</div>
+                    <div class="tl-role">Pesquisadora em Comunicação Social</div>
+                    <div class="tl-org">PUCRS</div>
+                    <div class="tl-desc">Pesquisa doutoral voltada para o mercado de streaming, ecossistemas de televisão e comportamento de novas audiências digitais. Integrante do Famecos Startups Tecnopuc.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-period">MAR 2010 — JUL 2010</div>
+                    <div class="tl-role">Professora de Jornalismo</div>
+                    <div class="tl-org">Universidade de Cruz Alta</div>
+                    <div class="tl-desc">Docente titular das disciplinas de Radiojornalismo e Legislação &amp; Ética aplicada à Comunicação Social.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="formacao" id="formacao">
+        <div class="formacao-inner">
+            <div class="reveal">
+                <div class="section-tag" style="color: var(--accent); opacity: 1; font-weight: 500;">Formação Acadêmica</div>
+                <h2 style="font-family: 'Libre Baskerville', serif; font-size: 2.2rem; font-weight: 700; color: #FFFFFF; line-height: 1.15; margin-top: 0.5rem;">
+                    Base<br>
+                    <em style="font-style: italic; color: var(--accent);">sólida,</em><br>
+                    visão<br>
+                    <span style="color: var(--accent);">ampla.</span>
+                </h2>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; line-height: 1.75; color: #FFFFFF; font-weight: 300; opacity: 0.9;">Uma trajetória acadêmica contínua e aprofundada, conectando o rigor metodológico das melhores universidades públicas e privadas ao ambiente prático de negócios de mídia.</p>
+            </div>
+            <div class="formacao-grid reveal">
+                <div class="formacao-item">
+                    <div class="form-grau">Doutorado</div>
+                    <div class="form-titulo">Comunicação</div>
+                    <div class="form-inst">PUCRS — Pontifícia Universidade Católica do Rio Grande do Sul</div>
+                    <div class="form-ano">2018 — 2022</div>
+                </div>
+                <div class="formacao-item">
+                    <div class="form-grau">Mestrado</div>
+                    <div class="form-titulo">Comunicação e Informação</div>
+                    <div class="form-inst">UFRGS — Universidade Federal do Rio Grande do Sul</div>
+                    <div class="form-ano">2005 — 2007</div>
+                </div>
+                <div class="formacao-item">
+                    <div class="form-grau">Especialização</div>
+                    <div class="form-titulo">Televisão e Convergência Digital</div>
+                    <div class="form-inst">Universidade do Vale do Rio dos Sinos — Unisinos</div>
+                    <div class="form-ano">2016 — 2017</div>
+                </div>
+                <div class="formacao-item">
+                    <div class="form-grau">Bacharelado</div>
+                    <div class="form-titulo">Comunicação Social — Jornalismo</div>
+                    <div class="form-inst">UFSM — Universidade Federal de Santa Maria</div>
+                    <div class="form-ano">2001 — 2004</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contato" id="contato">
+        <div class="contato-left reveal">
+            <div class="section-tag">Contato</div>
+            <h2>Vamos<br>conversar<br><em>sobre seu projeto?</em></h2>
+            <p>Disponível para liderança estratégica de projetos em branded content, consultorias de mídia baseadas em dados, arquitetura multiplataforma e gestão executiva de equipes criativas.</p>
+        </div>
+        
+        <div class="contato-mid reveal">
+            <div class="section-tag">Canais Diretos</div>
+            <a href="mailto:vanessa.scalei@gmail.com" class="contato-row">
+                <span class="contato-row-label">E-mail</span>
+                <span class="contato-row-value">vanessa.scalei@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/vanessascalei" target="_blank" class="contato-row">
+                <span class="contato-row-label">LinkedIn</span>
+                <span class="contato-row-value">/in/vanessascalei</span>
+            </a>
+            <div class="contato-row">
+                <span class="contato-row-label">Localização</span>
+                <span class="contato-row-value">Brasília, DF — Brasil</span>
+            </div>
+        </div>
+
+        <div class="contato-right reveal">
+            <div class="contato-form-panel">
+                <div class="section-tag" style="margin-bottom: 1rem;">Mensagem Rápida</div>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Formulário configurado! Ao hospedar o site, você pode integrar com serviços como o Formspree para receber as mensagens.');">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-accent form-submit-btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Vanessa <span>Scalei</span></div>
+        <div class="footer-copy">© 2026 — Todos os direitos reservados</div>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/vanessascalei" target="_blank">LinkedIn</a>
+            <a href="mailto:vanessa.scalei@gmail.com">E-mail</a>
+        </div>
+    </footer>
+
+    <script>
+        // Nav shadow on scroll
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('shadow', window.scrollY > 40);
+        });
+
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
